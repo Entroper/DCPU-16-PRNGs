@@ -1,0 +1,10 @@
+Author: Entroper
+Date: April 9, 2012
+
+This is a library of pseudo-random number generators (PRNGs).  Currently
+planned are a linear congruentrial generator (rand.dasm), TinyMT (a
+modification of Mersenne Twister for resource-constrained machines,
+TinyMT.dasm), and a block cipher or cryptographic hash generator.  The LCG is
+recommended when performance is a concern.  TinyMT is recommended when the
+quality of the random distribution is important, and the crypto algorithm is
+recommended if the generated numbers need to be cryptographically secure.
