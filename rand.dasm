@@ -10,15 +10,15 @@
 :rand
 	; 0x0019660D x seed + 1
 	SET X, [randseed]
-	SET Y, [randseed + 1]
+	SET A, [randseed + 1]
 	MUL [randseed], 0x660D
 	SET B, O
-	MUL Y, 0x660D
-	ADD Y, B
+	MUL A, 0x660D
+	ADD A, B
 	MUL X, 0x0019
-	ADD Y, X
-	SET [randseed + 1], Y
+	ADD A, X
 	ADD [randseed], 1
-	ADD [randseed + 1], O
+	ADD A, O
+	SET [randseed + 1], A
 	SET PC, POP
 	
