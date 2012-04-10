@@ -4,23 +4,21 @@
 ; http://6502.org/source/integers/random/random.html
 
 ; To seed the generator, simply overwrite the data in randseed.
-:randseed dat 0x12345678
+:randseed dat 0x5678, 0x1234
 
 ; Sets A to a 16-bit PRN.
 :rand
 	; 0x0019660D x seed + 1
-	SET A, 0x660D
-	SET B, 0x0019
 	SET X, [randseed]
 	SET Y, [randseed + 1]
-	MUL X, A
+	MUL [randseed], 0x660D
 	SET B, O
-	MUL Y, A
+	MUL Y, 0x660D
 	ADD Y, B
-	SET C, [randseed]
-	MUL C, B
-	ADD Y, C
-	SET [randseed], X
+	MUL X, 0x0019
+	ADD Y, X
 	SET [randseed + 1], Y
+	ADD [randseed], 1
+	ADD [randseed + 1], O
 	SET PC, POP
 	
