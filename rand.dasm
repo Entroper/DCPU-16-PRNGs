@@ -1,0 +1,26 @@
+; Linear congruential generator
+; Generates random words, using two words of state.
+; Based on the algorithm described here:
+; http://6502.org/source/integers/random/random.html
+
+; To seed the generator, simply overwrite the data in randseed.
+:randseed dat 0x12345678
+
+; Sets A to a 16-bit PRN.
+:rand
+	; 0x0019660D x seed + 1
+	SET A, 0x660D
+	SET B, 0x0019
+	SET X, [randseed]
+	SET Y, [randseed + 1]
+	MUL X, A
+	SET B, O
+	MUL Y, A
+	ADD Y, B
+	SET C, [randseed]
+	MUL C, B
+	ADD Y, C
+	SET [randseed], X
+	SET [randseed + 1], Y
+	SET PC, POP
+	
